@@ -3,31 +3,16 @@
 registry = "test"
 
 [[package]]
-name = "chriscerie/roact-spring"
-version = "1.0.0"
-dependencies = [["Hooks", "kampfkarren/roact-hooks@0.4.1"], ["Promise", "evaera/promise@4.0.0"], ["Roact", "roblox/roact@1.4.2"], ["TestEZ", "roblox/testez@0.4.1"]]
-
-[[package]]
-name = "eddie/modulename"
-version = "0.1.0"
-dependencies = [["Promise", "evaera/promise@4.0.0"], ["Roact", "roblox/roact@1.4.2"], ["Roact-spring", "chriscerie/roact-spring@1.0.0"]]
-
-[[package]]
 name = "evaera/promise"
 version = "4.0.0"
 dependencies = []
 
 [[package]]
-name = "kampfkarren/roact-hooks"
-version = "0.4.1"
+name = "howmanysmall/janitor"
+version = "1.14.2"
 dependencies = []
 
 [[package]]
-name = "roblox/roact"
-version = "1.4.2"
-dependencies = []
-
-[[package]]
-name = "roblox/testez"
-version = "0.4.1"
-dependencies = []
+name = "xswezan/superparty"
+version = "0.1.0"
+dependencies = [["Janitor", "howmanysmall/janitor@1.14.2"], ["Promise", "evaera/promise@4.0.0"]]

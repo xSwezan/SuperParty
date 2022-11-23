@@ -1,11 +1,19 @@
 [package]
-name = "eddie/module_name"
+name = "xswezan/superparty"
+description = "Create parties (a group of players) with ease!"
 version = "0.1.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
+exclude = [
+	"moonwave.toml",
+	"foreman.toml",
+	"selene.toml",
+	".gitignore",
+	"README.md",
+	"docs",
+	".editorconfig"
+]
 
 [dependencies]
-# Maid = "flamenco687/maid@3.2.2"
-Roact = "roblox/roact@1.4.2"
-Roact-spring = "chriscerie/roact-spring@1.0.0"
+Janitor = "howmanysmall/janitor@1.14.2"
 Promise = "evaera/promise@4.0.0"
