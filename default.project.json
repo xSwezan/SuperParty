@@ -1,0 +1,30 @@
+{
+	"name": "MODULE_NAME",
+	"tree": {
+		"$className": "DataModel",
+		"ServerScriptService": {
+			"$ignoreUnknownInstances": true,
+			"$className": "ServerScriptService",
+			"$path": "src/Server"
+		},
+		"ReplicatedStorage": {
+			"$ignoreUnknownInstances": true,
+			"$className": "ReplicatedStorage",
+			"$path": "src/Shared",
+			"MainModule": {
+				"$path": "src/Module",
+				"Packages": {
+					"$path": "Packages"
+				}
+			}
+		},
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$ignoreUnknownInstances": true,
+				"$className": "StarterPlayerScripts",
+				"$path": "src/Client"
+			}
+		}
+	}
+}
