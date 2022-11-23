@@ -1,4 +1,4 @@
-local Promise = require(script.Parent.Packages.Promise)
+local Promise = require(script.Parent.Parent.Promise)
 
 local Types = {}
 
@@ -32,7 +32,7 @@ export type Party = {
 	PlayerAdded: RBXScriptSignal;
 	PlayerRemoved: RBXScriptSignal;
 	PartyLeaderChanged: RBXScriptSignal;
-	Removing: RBXScriptSignal;
+	Destroyed: RBXScriptSignal;
 }
 
 export type SuperParty = {

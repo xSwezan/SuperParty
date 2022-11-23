@@ -1,10 +1,9 @@
-local ProximityPromptService = game:GetService("ProximityPromptService")
 local TeleportService = game:GetService("TeleportService")
 local Types = require(script.Parent.Types)
-local Janitor = require(script.Parent.Packages.Janitor)
+local Janitor = require(script.Parent.Parent.Janitor)
+local Promise = require(script.Parent.Parent.Promise)
 
 local Enums = require(script.Parent.Enums)
-local Promise = require(script.Parent.Packages.Promise)
 
 local Party = {}
 Party.__index = Party
@@ -17,7 +16,7 @@ function Party.new(Settings: Types.PartySettings?)
 	self:NewEvent("PlayerAdded")
 	self:NewEvent("PlayerRemoved")
 	self:NewEvent("PartyLeaderChanged")
-	self:NewEvent("Removing")
+	self:NewEvent("Destroyed")
 
 	self.Settings = Settings or {
 		MaxPlayers = -1;
@@ -140,11 +139,13 @@ function Party:Teleport(PlaceId: number, Private: boolean?, TeleportData: any?, 
 end
 
 function Party:Destroy()
-	self:FireEvent("Removing")
+	self:FireEvent("Destroyed")
 
 	self.Janitor:Destroy()
 
-	self = nil
+	table.clear(self)
+	setmetatable(self, nil)
 end
 
+table.freeze(Party)
 return Party

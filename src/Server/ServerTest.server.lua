@@ -1,6 +1,6 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local SuperParty = require(ReplicatedStorage.MainModule)
+local SuperParty = require(ReplicatedStorage.Packages.MainModule)
 
 local NewParty = SuperParty:CreateParty{
 	MaxPlayers = 4;
@@ -14,7 +14,7 @@ NewParty.PlayerRemoved:Connect(function(Player: Player)
 	print(Player.Name, "left!")
 end)
 
-NewParty.Removing:Connect(function()
+NewParty.Destroyed:Connect(function()
 	print("REMOVING PARTY!")
 end)
 
@@ -24,12 +24,14 @@ Players.PlayerAdded:Connect(function(Player: Player)
 	if not (Success) then
 		print(Status)
 	end
-
-	print(NewParty)
-
+	
 	task.wait(5)
 	NewParty:RemovePlayer(Player)
+	print("start destroy")
+	print(NewParty)
 	NewParty:Destroy()
+	warn(NewParty)
+	print("end destroy")
 
 	print(NewParty)
 

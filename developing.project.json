@@ -1,5 +1,6 @@
 {
 	"name": "SuperParty",
+	"servePlaceIds": [11642065564],
 	"tree": {
 		"$className": "DataModel",
 		"ServerScriptService": {
@@ -11,10 +12,10 @@
 			"$ignoreUnknownInstances": true,
 			"$className": "ReplicatedStorage",
 			"$path": "src/Shared",
-			"MainModule": {
-				"$path": "src/Module",
-				"Packages": {
-					"$path": "Packages"
+			"Packages": {
+				"$path": "Packages",
+				"MainModule": {
+					"$path": "src/Module"
 				}
 			}
 		},
