@@ -1,9 +1,10 @@
 local Promise = require(script.Parent.Parent.Promise)
+local Janitor = require(script.Parent.Parent.Janitor)
 
 local Types = {}
 
+export type Janitor = typeof(Janitor)
 export type Promise = typeof(Promise)
-
 export type Enum = string;
 
 export type PartySettings = {
@@ -16,6 +17,7 @@ export type Party = {
 	RemovePlayer: (self: Party, Player: Player) -> boolean;
 
 	Invite: (self: Party, Player: Player) -> nil;
+	SetSetting: (self: Party, Name: string, Value: any) -> nil;
 
 	Teleport: (self: Party, PlaceId: number, Private: boolean?, TeleportData: any?, CustomLoadingScreen: GuiObject?) -> nil;
 
@@ -24,6 +26,9 @@ export type Party = {
 
 	Destroy: (self: Party) -> nil;
 	
+	Settings: PartySettings;
+	Janitor: Janitor;
+
 	Players: {Player};
 	PartyLeader: Player?;
 
@@ -32,6 +37,7 @@ export type Party = {
 	PlayerAdded: RBXScriptSignal;
 	PlayerRemoved: RBXScriptSignal;
 	PartyLeaderChanged: RBXScriptSignal;
+	SettingChanged: RBXScriptSignal;
 	Destroyed: RBXScriptSignal;
 }
 

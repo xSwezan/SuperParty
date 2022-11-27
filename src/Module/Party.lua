@@ -1,3 +1,5 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 local TeleportService = game:GetService("TeleportService")
 local Types = require(script.Parent.Types)
 local Janitor = require(script.Parent.Parent.Janitor)
@@ -8,6 +10,10 @@ local Enums = require(script.Parent.Enums)
 local Party = {}
 Party.__index = Party
 
+if (RunService:IsClient()) then
+	return {}
+end
+
 function Party.new(Settings: Types.PartySettings?)
 	local self = setmetatable({}, Party)
 
@@ -16,12 +22,17 @@ function Party.new(Settings: Types.PartySettings?)
 	self:NewEvent("PlayerAdded")
 	self:NewEvent("PlayerRemoved")
 	self:NewEvent("PartyLeaderChanged")
+	self:NewEvent("SettingChanged")
 	self:NewEvent("Destroyed")
 
 	self.Settings = Settings or {
 		MaxPlayers = -1;
 		PartyMode = Enums.PartyMode.Public;
 	}
+
+	self.Janitor:Add(Players.PlayerRemoving:Connect(function(Player: Player)
+		self:RemovePlayer(Player)
+	end))
 
 	self.Players = {}
 	self.PartyLeader = nil
@@ -136,6 +147,11 @@ function Party:Teleport(PlaceId: number, Private: boolean?, TeleportData: any?, 
 
 		resolve()
 	end)
+end
+
+function Party:SetSetting(Name: string, Value: any)
+	self.Settings[Name] = Value
+	self:FireEvent("SettingChanged", Name, Value)
 end
 
 function Party:Destroy()

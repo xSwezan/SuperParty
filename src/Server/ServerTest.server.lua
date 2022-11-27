@@ -14,6 +14,10 @@ NewParty.PlayerRemoved:Connect(function(Player: Player)
 	print(Player.Name, "left!")
 end)
 
+NewParty.SettingChanged:Connect(function(Name: string, Value: any)
+	print(Name, Value)
+end)
+
 NewParty.Destroyed:Connect(function()
 	print("REMOVING PARTY!")
 end)
@@ -27,16 +31,13 @@ Players.PlayerAdded:Connect(function(Player: Player)
 	
 	task.wait(5)
 	NewParty:RemovePlayer(Player)
-	print("start destroy")
-	print(NewParty)
 	NewParty:Destroy()
-	warn(NewParty)
-	print("end destroy")
-
-	print(NewParty)
 
 	task.wait(1)
-	print("yes")
 	NewParty:AddPlayer(Player)
-	print("YES")
 end)
+
+task.wait(3)
+
+NewParty:SetSetting("MaxPlayers", 2)
+print(NewParty.Settings)
