@@ -138,9 +138,11 @@ function Party:Teleport(PlaceId: number, Private: boolean?, TeleportData: any?, 
 		assert(typeof(PlaceId) == "number", "Passed PlaceId is not a valid number!")
 
 		if (Private) then
-			local Code: string = TeleportService:ReserveServer(PlaceId)
+			local Code: string, Id: string = TeleportService:ReserveServer(PlaceId)
 
 			TeleportService:TeleportToPrivateServer(PlaceId, Code, self.Players, nil, TeleportData, CustomLoadingScreen)
+
+			resolve(Code, Id)
 		else
 			TeleportService:TeleportPartyAsync(PlaceId, self.Players, TeleportData, CustomLoadingScreen)
 		end

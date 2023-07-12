@@ -1,7 +1,7 @@
 [package]
 name = "xswezan/superparty"
 description = "Create parties (a group of players) with ease!"
-version = "0.1.2"
+version = "0.1.3"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 exclude = [
