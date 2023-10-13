@@ -61,9 +61,11 @@ function Party:FireEvent(Name: string, ...)
 end
 
 function Party:Invite(Player: Player)
-	if (table.find(self.InviteList, Player.UserId)) then return end
+	self.InviteList[Player.UserId] = true
+end
 
-	table.insert(self.InviteList, Player.UserId)
+function Party:RemoveInvite(Player: Player)
+	self.InviteList[Player.UserId] = nil
 end
 
 function Party:IsMax(): boolean
@@ -81,7 +83,7 @@ function Party:CanJoin(Player: Player): (boolean, Types.Enum?)
 	end
 
 	if (self.Settings.PartyMode == Enums.PartyMode.Private) then
-		if (self.PartyLeader) and not (table.find(self.InviteList, Player.UserId)) then
+		if (self.PartyLeader) and not (self.InviteList[Player.UserId]) then
 			return false, Enums.PartyStatus.PartyIsPrivate
 		end
 	end

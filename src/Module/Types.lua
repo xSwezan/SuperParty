@@ -17,6 +17,8 @@ export type Party = {
 	RemovePlayer: (self: Party, Player: Player) -> boolean;
 
 	Invite: (self: Party, Player: Player) -> nil;
+	RemoveInvite: (self: Party, Player: Player) -> nil;
+
 	SetSetting: (self: Party, Name: string, Value: any) -> nil;
 
 	Teleport: (self: Party, PlaceId: number, Private: boolean?, TeleportData: any?, CustomLoadingScreen: GuiObject?) -> nil;
@@ -32,7 +34,7 @@ export type Party = {
 	Players: {Player};
 	PartyLeader: Player?;
 
-	InviteList: {number};
+	InviteList: {[number]: boolean};
 
 	PlayerAdded: RBXScriptSignal;
 	PlayerRemoved: RBXScriptSignal;
